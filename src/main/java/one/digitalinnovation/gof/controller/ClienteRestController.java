@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,6 +47,12 @@ public class ClienteRestController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
+		clienteService.atualizar(id, cliente);
+		return ResponseEntity.ok(cliente);
+	}
+
+	@PatchMapping("/{id}")
+	public ResponseEntity<Cliente> atualizarSomenteUmaInformacão(@PathVariable Long id, @RequestBody Cliente cliente) {
 		clienteService.atualizar(id, cliente);
 		return ResponseEntity.ok(cliente);
 	}
